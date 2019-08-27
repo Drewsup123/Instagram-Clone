@@ -1,16 +1,22 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-// Screen Imports
-import Login from '../screens/Login.js';
-import Signup from '../screens/Signup';
+// Navigator Imports
+import TabNavigator from './TabNavigator';
+import AuthNavigator from './AuthNavigator';
 import { createSwitchNavigator, createAppContainer } from 'react-navigation';
-// Expo Icons
-import {Ionicons, Feather} from '@expo/vector-icons';
 
-const SwitchNavigator = createSwitchNavigator({
-    Home : {
-        screen : Home,
+const SwitchNavigator = createSwitchNavigator(
+    {
+        Home : {
+            screen : TabNavigator
+        },
+        Auth : {
+            screen : AuthNavigator
+        },
     },
-})
+    {
+        initialRouteName : "Auth"
+    }
+)
 
 export default createAppContainer(SwitchNavigator);

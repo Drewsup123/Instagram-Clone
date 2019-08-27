@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 // Component Imports
-import TabNavigator from './navigation/TabNavigator.js';
+import SwitchNavigator from './navigation/SwitchNavigator.js';
 // Redux Imports
 import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
@@ -17,7 +17,7 @@ const store = createStore(
 export default function App() {
 	return (
     	<Provider store={store}>
-			<TabNavigator />
+			<SwitchNavigator />
     	</Provider>
 	);
 }

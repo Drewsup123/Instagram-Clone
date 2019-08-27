@@ -6,7 +6,7 @@ import Activity from '../screens/Activity.js';
 import Profile from '../screens/Profile.js';
 import Search from '../screens/Search.js';
 import Upload from '../screens/Upload.js';
-import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation';
 // Expo Icons
 import {Ionicons, Feather} from '@expo/vector-icons';
 
@@ -49,4 +49,4 @@ const TabNavigator = createBottomTabNavigator({
     },
 })
 
-export default createAppContainer(TabNavigator);
+export default TabNavigator;
