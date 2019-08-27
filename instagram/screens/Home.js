@@ -1,8 +1,9 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 import GlobalStyles from '../styles/GlobalStyles';
+import { connect } from 'react-redux';
 
-export default class Home extends React.Component {
+class Home extends React.Component {
     render(){
         return(
             <View style={GlobalStyles.container}>
@@ -11,3 +12,12 @@ export default class Home extends React.Component {
         );
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        user : state.user,
+        loggedIn : state.loggedIn
+    }
+}
+
+export default connect(mapStateToProps)(Home)

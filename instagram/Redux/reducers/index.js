@@ -14,3 +14,10 @@ export const reducer = (state = initialState, action) => {
             return state;
     }
 }
+
+// const mapStateToProps = state => {
+//     return {
+//         user : state.user,
+//         loggedIn : state.loggedIn,
+//     }
+// }
