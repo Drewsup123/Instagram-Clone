@@ -1,4 +1,4 @@
-import Config from './config';
+import Config from './firebaseConfig';
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
@@ -15,10 +15,12 @@ const firebaseConfig = {
     appId: Config.appId
 };
 
-export default function InitializeFirebase(){
+const InitializeFirebase = () => {
     console.log("Firebase Config", firebaseConfig)
     firebase.initializeApp(firebaseConfig)
 };
+
+export default InitializeFirebase;
 
 
 
