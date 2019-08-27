@@ -21,8 +21,24 @@ class Login extends React.Component {
 
     login = () => {
         const {email, password} = this.state;
-        this.props.login(email, password);
-        this.props.navigation.navigate('Home')
+        if(email && password){
+            firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(user => {
+                console.log(user)
+                const userData = {
+                    uid : user.uid,
+                    email : user.email,
+                }
+                this.props.signup(userData);
+                this.props.navigation.navigate('Home')
+            })
+            .catch(err => {
+                console.log(err)
+                this.setState({ errorMessage : err.message })
+            })
+        }else{
+            this.setState({ errorMessage : "Please fill out all fields"});
+        }
     }
 
     render(){

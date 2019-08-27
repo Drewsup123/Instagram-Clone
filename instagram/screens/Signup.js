@@ -3,7 +3,8 @@ import {Text, View, TextInput, Button} from 'react-native';
 import GlobalStyles from '../styles/GlobalStyles';
 import AuthStyles from '../styles/AuthStyles';
 import { connect } from 'react-redux';
-import {login} from '../Redux/actions/index'
+import {signup} from '../Redux/actions/index';
+import * as firebase from 'firebase';
 
 class Signup extends React.Component {
 
@@ -14,6 +15,7 @@ class Signup extends React.Component {
             password : "",
             username : "",
             bio : "",
+            errorMessage : "",
         }
     }
 
@@ -21,15 +23,33 @@ class Signup extends React.Component {
         this.setState({[value] : text});
     }
 
-    login = () => {
+    signup = () => {
         const {email, password} = this.state;
-        this.props.login(email, password);
+        if(email && password){
+            firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(user => {
+                console.log(user)
+                const userData = {
+                    uid : user.uid,
+                    email : user.email,
+                }
+                this.props.signup(userData);
+                this.props.navigation.navigate('Home')
+            })
+            .catch(err => {
+                console.log(err)
+                this.setState({ errorMessage : err.message })
+            })
+        }else{
+            this.setState({ errorMessage : "Please fill out all fields"});
+        }
     }
 
     render(){
         return(
             <View style={GlobalStyles.container}>
                 <Text>Signup</Text>
+                <Text style={{color : "red"}} >{this.state.errorMessage}</Text>
                 <TextInput 
                     name="email"
                     value={this.state.email} 
@@ -63,7 +83,7 @@ class Signup extends React.Component {
                     style={AuthStyles.textInput}
                 />
 
-                <Button onPress={this.login} title="Submit" style={AuthStyles.button}/>
+                <Button onPress={this.signup} title="Submit" style={AuthStyles.button}/>
             </View>
         );
     }
@@ -76,4 +96,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {login})(Signup);
+export default connect(mapStateToProps, {signup})(Signup);
