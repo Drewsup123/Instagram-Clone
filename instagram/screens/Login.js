@@ -28,7 +28,6 @@ class Login extends React.Component {
     render(){
         return(
             <View style={GlobalStyles.container}>
-                <Button onPress={() => this.props.navigation.navigate('Signup')} title="Signup" />
                 <Text>Login</Text>
                 <TextInput 
                     style={AuthStyles.textInput}
@@ -52,6 +51,9 @@ class Login extends React.Component {
                     onPress={this.login} 
                     title="Submit" 
                 />
+
+                <Text>Don't have an account?</Text>
+                <Button onPress={() => this.props.navigation.navigate('Signup')} title="Signup" />
             </View>
         );
     }
