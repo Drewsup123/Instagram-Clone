@@ -1,6 +1,7 @@
 import React from 'react';
 import {Text, View, TextInput, Button} from 'react-native';
 import GlobalStyles from '../styles/GlobalStyles';
+import AuthStyles from '../styles/AuthStyles';
 import { connect } from 'react-redux';
 import {login} from '../Redux/actions/index'
 
@@ -21,6 +22,7 @@ class Login extends React.Component {
     login = () => {
         const {email, password} = this.state;
         this.props.login(email, password);
+        this.props.navigation.navigate('Home')
     }
 
     render(){
@@ -29,6 +31,7 @@ class Login extends React.Component {
                 <Button onPress={() => this.props.navigation.navigate('Signup')} title="Signup" />
                 <Text>Login</Text>
                 <TextInput 
+                    style={AuthStyles.textInput}
                     name="email"
                     value={this.state.email} 
                     onChangeText = {text => this.onChangeHandler(text, "email")} 
@@ -36,13 +39,19 @@ class Login extends React.Component {
                 />
 
                 <TextInput 
+                    style={AuthStyles.textInput}
                     name="password"
                     value={this.state.password} 
                     onChangeText = {text => this.onChangeHandler(text, "password")} 
                     placeholder="Password"
+                    secureTextEntry={true}
                 />
 
-                <Button onPress={this.login} title="Submit" />
+                <Button
+                    style={AuthStyles.button}
+                    onPress={this.login} 
+                    title="Submit" 
+                />
             </View>
         );
     }

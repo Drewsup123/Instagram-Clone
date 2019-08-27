@@ -39,6 +39,7 @@ class Signup extends React.Component {
                     value={this.state.password} 
                     onChangeText = {text => this.onChangeHandler(text, "password")} 
                     placeholder="Password"
+                    secureTextEntry={true}
                 />
 
                 <Button onPress={this.login} title="Submit" />
