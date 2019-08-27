@@ -36,7 +36,7 @@ const TabNavigator = createBottomTabNavigator({
         screen : Activity,
         navigationOptions : {
             tabBarLabel : ' ',
-            tabBarIcon : ({focused}) => <Ionicons name="ios-heart" color={focused ? "blue" : 'black'} size={35} />
+            tabBarIcon : ({focused}) => <Ionicons name={focused ? "ios-heart" : "ios-heart-empty"} color={focused ? "blue" : 'black'} size={35} />
         }
     },
     // Upload : '',
